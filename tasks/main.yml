@@ -1,0 +1,28 @@
+# Docker tasks - main.yml
+---
+- name: install docker repo requirements
+  apt:
+    update_cache: yes
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+
+- name: add docker key
+  apt_key:
+    id: 0EBFCD88
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: add docker repo
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
+    state: present
+
+- name: install docker
+  apt:
+    update_cache: yes
+    name:
+      - docker-ce
+      - docker-compose
