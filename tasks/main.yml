@@ -24,5 +24,8 @@
   apt:
     update_cache: yes
     name:
-      - docker-ce
+      - docker-ce={{ docker_version }}
       - docker-compose
+
+- name: lock docker version
+  command: apt-mark hold docker-ce
