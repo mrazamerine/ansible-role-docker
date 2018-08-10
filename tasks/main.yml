@@ -11,7 +11,7 @@
 
 - name: add docker key
   apt_key:
-    id: 0EBFCD88
+    id: "{{ docker_key_id }}"
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 
